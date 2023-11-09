@@ -7,7 +7,6 @@ export const authentication = defineStore({
         return {
             token: localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')!) : '',
             usuario: localStorage.getItem('usuario') ? JSON.parse(localStorage.getItem('usuario')!) : null,
-            invalid: false,
         }
     },
     actions: {
@@ -29,7 +28,6 @@ export const authentication = defineStore({
 
             if (response.status == 200) {
 
-                this.invalid = false;
                 this.token = JSON.parse(await response.text());
                 this.usuario = usuario;
 
@@ -40,13 +38,8 @@ export const authentication = defineStore({
 
             }
             else {
-                this.invalid = true;
 
-                const erro = JSON.parse(await response.text());
-
-                if (erro.message && erro.custom) {
-                    alert(erro.message);
-                }
+               alert('Falha no login. Verifique suas credenciais e tente novamente.')
 
 
             }
