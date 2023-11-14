@@ -14,16 +14,18 @@
         </div>
         
         <div class="container d-flex justify-content-center">
-            <form id="login-form">
+            <form id="login-form" @submit="login">
 
                 <div class="form-group">
                     <label for="usernameInput">Usuário</label>
-                    <input class="form-control" id="usernameInput" type="text" placeholder="Insira seu usuário ...">
+                    <input class="form-control" id="usernameInput" type="text" v-model="loginData.usuario"
+                    placeholder="Insira seu usuário ...">
                 </div>
             
                 <div class="form-group">
                     <label for="passwordInput">Senha</label>
-                    <input class="form-control" type="password" id="passwordInput" placeholder="Insira a senha ...">
+                    <input class="form-control" type="password" id="passwordInput" v-model="loginData.senha"
+                    placeholder="Insira a senha ...">
                 </div>
 
                 <div class="d-flex justify-content-center pt-4">
@@ -71,6 +73,33 @@
 <script lang="ts" setup>
 import { RouterLink } from "vue-router";
 import { Icon } from '@iconify/vue';
+import { onMounted, reactive } from "vue";
+import { authentication } from "@/stores/authentication";
+
+onMounted(() => {
+
+    //Limpando dados do cache com clear()
+    localStorage.clear();
+
+    // Limpando dados de autenticação
+    authentication().token = null;
+    authentication().usuario = null;
+})
+
+// Variáveis que armazenam os dados do login
+
+const loginData = reactive({
+    usuario : '',
+    senha : ''
+});
+
+// Função de login
+
+const login = async () => {
+
+    authentication().login(loginData.usuario, loginData.senha);
+
+}
 
 </script>
 
