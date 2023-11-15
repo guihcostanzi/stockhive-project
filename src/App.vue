@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import ShHeader from "./components/ShHeader.vue"
+import { authentication } from './stores/authentication';
 </script>
 
 <template>
-
+  <ShHeader/>
   <RouterView />
 </template>
 

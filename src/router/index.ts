@@ -18,7 +18,22 @@ const router = createRouter({
       path: '/projeto',
       name: 'projeto',
       component: () => import('../views/Projeto.vue')
-    }
+    },
+    {
+      path: '/cadastrarItem',
+      name: 'cadastrarItem',
+      component: () => import('../views/CadastrarItem.vue')
+    },
+    {
+      path: '/editarItem',
+      name: 'editarItem',
+      component: () => import('../views/EditarItem.vue')
+    },
+    {
+      path: '/listarItem',
+      name: 'listarItem',
+      component: () => import('../views/ListarItem.vue')
+    },
   ]
 })
 
@@ -30,7 +45,7 @@ router.beforeEach(async (to) => {
 
   // Se necessitar de autenticação, faça isso.
   if (authRequired && !auth.token) {
-    return '/login';
+    //return '/login';
   }
 
   if (to.path == '/') {
