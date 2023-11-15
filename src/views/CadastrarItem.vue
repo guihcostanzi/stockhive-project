@@ -29,7 +29,8 @@
                     <select id="tipoItem" class="form-control" v-model="dadosCadastro.tipo">
                         <option :value="null">Selecione o tipo do item ...</option>
                         <option value="PAPELARIA">Escritório</option>
-                        <option value="INFORMATICA">Informática</option>
+                        <option value="ELETRONICO">Eletrônico</option>
+                        <option value="FERRAMENTA">Ferramenta</option>
                     </select>
                 </div>
                 
@@ -76,6 +77,12 @@ const cadastrarItem = async() => {
 
     if(response.status == 200){
         alert(`O Item #${response.text()} foi cadastrado com sucesso !`)
+
+        dadosCadastro.nome = '';
+        dadosCadastro.tipo = null;
+        dadosCadastro.quantidade = 0;
+        dadosCadastro.valorUnitario = '';
+
     }
     else{
         alert(`Erro no cadastro. Verifique os dados e tente novamente.`)

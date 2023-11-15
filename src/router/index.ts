@@ -45,7 +45,7 @@ router.beforeEach(async (to) => {
 
   // Se necessitar de autenticação, faça isso.
   if (authRequired && !auth.token) {
-    //return '/login';
+    return '/login';
   }
 
   if (to.path == '/') {

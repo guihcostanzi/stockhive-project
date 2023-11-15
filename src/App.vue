@@ -5,7 +5,7 @@ import { authentication } from './stores/authentication';
 </script>
 
 <template>
-  <ShHeader/>
+  <ShHeader v-if="authentication().token"/>
   <RouterView />
 </template>
 

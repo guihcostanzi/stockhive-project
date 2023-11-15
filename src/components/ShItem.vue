@@ -1,17 +1,17 @@
 <template>
-    <div class="card col-12">
-        <div class="card-header">
+    <div class="card">
+        <div class="card-header p-1">
             <div class="row">
                 <div class="col-md-8">
-                    <p><strong>Item : </strong>
-                    <h4>{{ item.nome }}</h4>
+                    <p class="mb-0"><strong>Item : </strong>
+                    <h4 class="mb-0">{{ item.nome }}</h4>
                     </p>
                 </div>
             </div>
 
         </div>
-        <div class="card-body d-sm-flex justify-content-start ml-3">
-            <div class="card-item col-12" v-if="!estaEditando">
+        <div class="card-body d-sm-flex justify-content-start pb-0">
+            <div class="card-item" v-if="!estaEditando">
                 <div class="row">
                     <div class="col-md-6">
                         <p class="mt-2"><strong>Quantidade : </strong>
@@ -28,15 +28,15 @@
                         <h4>{{ item.tipo }}</h4>
                         </p>
                     </div>
-                    <div class="col-md-12 d-flex justify-content-end">
-                        <div class="d-flex justify-content-end pb-3 pr-3" v-if="!estaEditando">
+                    <div class="col-md-12 d-flex justify-content-start">
+                        <div class="d-flex pb-3" v-if="!estaEditando">
                             <!-- Editar -->
-                            <button type="button" class="btn btn-outline-secondary mr-2 ml-2 mt-4"
+                            <button type="button" class="btn btn-outline-secondary ml-2 mt-2" id="editarButton"
                                 @click="iniciarEdicaoItem">
                                 <Icon icon="ph:pencil-thin" width="22" height="22" />
                             </button>
                             <!-- Deletar o Item. -->
-                            <button type="button" class="btn btn-outline-danger mr-2 mt-4"
+                            <button type="button" class="btn btn-outline-danger ml-2 mt-2" id="deletarButton"
                                 @click="$emit('deletar-item', item)">
                                 <Icon icon="ph:trash-light" width="22" height="22" />
                             </button>
@@ -65,9 +65,11 @@
                     </div>
                     <div class="inputEdicaoItem">
                         <label for="tipoItemAtualizado"><strong>Tipo :</strong></label>
-                        <select class="form-control" v-model="dadosAtualizados.tipo" required id="tipoitem">
-                            <option value="ATIVO">ATIVO</option>
-                            <option value="DESATIVADO">DESATIVADO</option>
+                        <select class="form-control" v-model="dadosAtualizados.tipo" required 
+                            id="tipoitemAtualizado">
+                            <option value="ESCRITORIO">Escritório</option>
+                            <option value="ELETRONICO">Eletrônico</option>
+                            <option value="FERRAMENTA">Ferramenta</option>
                         </select>
                     </div>
 
@@ -75,7 +77,7 @@
                     <div class="d-flex">
                         <!-- Confirmar edição. -->
                         <button type="button" class="btn btn-outline-success mr-2 ml-2 mt-4" v-if="estaEditando"
-                            @click="efetivarEdicao">
+                            @click="efetivarEdicao" id="botaoConfirmarEdicao">
                             <Icon icon="line-md:confirm-circle" width="22" height="26" />
                         </button>
                         <!-- Cancelar. -->
@@ -194,10 +196,8 @@ const formatarValor = () => {
 <style lang="scss" scoped>
 .card {
     background-color: rgb(243, 243, 243);
-    max-width: 600px;
-    margin-bottom: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    max-width: 440px;
+    margin: 1rem;
     padding-left: 0;
     padding-right: 0;
 }
@@ -209,6 +209,14 @@ const formatarValor = () => {
 .inputEdicaoItem {
     margin-bottom: 1rem;
     width: 100%;
+}
+
+#editarButton{
+    margin-right: 1rem;
+}
+
+#botaoConfirmarEdicao{
+    margin-right: 1rem;
 }
 
 </style>
