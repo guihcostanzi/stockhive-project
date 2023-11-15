@@ -38,87 +38,23 @@ class Item {
     }
 }
 
-onMounted(() => {
+onMounted(async() => {
     
-    dadosAPI.value = [
-       {
-            nome: "Papel",
-            tipo: "ESCRITORIO",
-            quantidade: 789,
-            valorUnitario: 156.90,
-            cod: uid()
-        },
+   // Trazendo os items da API
+
+   const response = await fetch('http://localhost:8081/item/list',
         {
-            nome: "Caneta",
-            tipo: "ESCRITORIO",
-            quantidade: 500,
-            valorUnitario: 2.50,
-            cod: uid()
-        },
-        {
-            nome: "Notebook",
-            tipo: "ELETRONICO",
-            quantidade: 30,
-            valorUnitario: 1200.00,
-            cod: uid()
-        },
-        {
-            nome: "Arame Farpado",
-            tipo: "AGRICOLA",
-            quantidade: 100,
-            valorUnitario: 8.75,
-            cod: uid()
-        },
-        {
-            nome: "Lápis",
-            tipo: "ESCRITORIO",
-            quantidade: 1000,
-            valorUnitario: 1.20,
-            cod: uid()
-        },
-        {
-            nome: "Martelo",
-            tipo: "FERRAMENTA",
-            quantidade: 50,
-            valorUnitario: 25.50,
-            cod: uid()
-        },
-        {
-            nome: "Pasta Arquivo",
-            tipo: "ESCRITORIO",
-            quantidade: 200,
-            valorUnitario: 5.75,
-            cod: uid()
-        },
-        {
-            nome: "Fio Elétrico",
-            tipo: "ELETRICO",
-            quantidade: 300,
-            valorUnitario: 3.00,
-            cod: uid()
-        },
-        {
-            nome: "Sementes de Tomate",
-            tipo: "AGRICOLA",
-            quantidade: 50,
-            valorUnitario: 0.50,
-            cod: uid()
-        },
-        {
-            nome: "Mouse",
-            tipo: "ELETRONICO",
-            quantidade: 80,
-            valorUnitario: 18.99,
-            cod: uid()
-        },
-        {
-            nome: "Alicate",
-            tipo: "FERRAMENTA",
-            quantidade: 40,
-            valorUnitario: 12.75,
-            cod: uid()
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${authentication().token}`,
+                'Content-Type': 'application/json'
+            }
+            
+
         }
-]
+    );
+
+    dadosAPI.value = JSON.parse(await response.text());
 
 })
 
@@ -165,7 +101,7 @@ const editarItem = async (nomeAtualizado: string, tipoAtualizado : string, valor
 
     const response = await fetch('http://localhost:8081/item/edit',
         {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 Authorization: `Bearer ${authentication().token}`,
                 'Content-Type': 'application/json'
