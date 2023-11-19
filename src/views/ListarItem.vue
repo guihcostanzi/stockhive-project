@@ -98,7 +98,7 @@ const editarItem = async (nomeAtualizado: string, tipoAtualizado : string, valor
         cod: codItem
     }
 
-    const response = await fetch('http://localhost:8081/item/edit',
+    const response = await fetch('http://localhost:8081/stockhive/item/update',
         {
             method: 'PUT',
             headers: {

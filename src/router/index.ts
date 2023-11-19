@@ -25,14 +25,19 @@ const router = createRouter({
       component: () => import('../views/CadastrarItem.vue')
     },
     {
-      path: '/editarItem',
-      name: 'editarItem',
-      component: () => import('../views/EditarItem.vue')
-    },
-    {
       path: '/listarItem',
       name: 'listarItem',
       component: () => import('../views/ListarItem.vue')
+    },
+    {
+      path: '/telaInicial',
+      name: 'telaInicial',
+      component: () => import('../views/TelaInicial.vue')
+    },
+    {
+      path: '/relatorios',
+      name: 'relatorios',
+      component: () => import('../views/Relatorios.vue')
     },
   ]
 })
