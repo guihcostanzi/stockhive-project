@@ -37,7 +37,7 @@
                             </button>
                             <!-- Deletar o Item. -->
                             <button type="button" class="btn btn-outline-danger ml-2 mt-2" id="deletarButton"
-                                @click="$emit('deletar-item', item)">
+                                @click="$emit('deletar-item', item.codigo)">
                                 <Icon icon="ph:trash-light" width="22" height="22" />
                             </button>
                         </div>

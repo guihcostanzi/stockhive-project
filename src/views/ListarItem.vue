@@ -124,7 +124,7 @@ const editarItem = async (nomeAtualizado: string, tipoAtualizado : string, valor
 
 const deletarItem = async (codItem: string) => {
 
-    const response = await fetch(`http://localhost:8081/item/remove?cod=${codItem}`,
+    const response = await fetch(`http://localhost:8081/stockhive/item/delete/${codItem}`,
         {
             method: 'DELETE',
             headers: {
