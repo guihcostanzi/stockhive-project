@@ -60,10 +60,11 @@ const cadastrarItem = async() => {
         quantidade: dadosCadastro.quantidade,
         tipo: dadosCadastro.tipo,
         valorUnitario: dadosCadastro.valorUnitario,
-        cod: uid()
+        codigo: uid(),
+        usuario: authentication().usuario
     }
 
-    const response = await fetch('http://localhost:8081/item/create',
+    const response = await fetch('http://localhost:8081/stockhive/item/create',
         {
             method: 'POST',
             headers: {

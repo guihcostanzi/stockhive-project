@@ -13,11 +13,11 @@ export const authentication = defineStore({
         async login(usuario: string, senha: string) {
 
             const data = {
-                usuario : usuario,
+                nome : usuario,
                 senha: senha
             }
 
-            const response = await fetch('http://localhost:8081/auth/login', { // Endereço da API SpringBoot, para login.
+            const response = await fetch('http://localhost:8081/stockhive/auth/login', { // Endereço da API SpringBoot, para login.
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,7 +28,11 @@ export const authentication = defineStore({
 
             if (response.status == 200) {
 
-                this.token = JSON.parse(await response.text());
+                const respostaAPI = JSON.parse(await response.text());
+
+                console.log(respostaAPI)
+
+                this.token = respostaAPI.accessToken;
                 this.usuario = usuario;
 
                 localStorage.setItem('token', JSON.stringify(this.token));

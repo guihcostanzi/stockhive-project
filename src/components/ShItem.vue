@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" :class="{'card-Fixo' : !estaEditando}">
         <div class="card-header p-1">
             <div class="row">
                 <div class="col-md-8">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-6">
                         <p class="mt-2"><strong>Valor Unitário(R$) : </strong>
-                        <h4>{{ item.valorUnitario.toFixed(2) }}</h4>
+                        <h4>{{ item.valorUnitario ? item.valorUnitario.toFixed(2) : "--/--" }}</h4>
                         </p>
                     </div>
                     <div class="col-md-12">
@@ -60,7 +60,7 @@
                     <div class="inputEdicaoItem mr-2">
                         <label for="valorItemAtualizado"><strong>Valor Unitário :</strong></label>
                         <input type="text" class="form-control" v-model="dadosAtualizados.valorUnitario" @input="formatarValor"
-                        :placeholder="dadosAtualizados.valorUnitario" required 
+                        :placeholder="dadosAtualizados.valorUnitario ? dadosAtualizados.valorUnitario : '0.00'" required 
                             id="valorItemAtualizado">
                     </div>
                     <div class="inputEdicaoItem">
@@ -70,6 +70,7 @@
                             <option value="ESCRITORIO">Escritório</option>
                             <option value="ELETRONICO">Eletrônico</option>
                             <option value="FERRAMENTA">Ferramenta</option>
+                            <option value="PAPELARIA">Papelaria</option>
                         </select>
                     </div>
 
@@ -117,7 +118,6 @@ const dadosAtualizados = reactive({
     quantidade: null,
     valorUnitario: '',
     tipo: ''
-
 })
 
 // UpperCase para o nome editado
@@ -132,7 +132,7 @@ const iniciarEdicaoItem = () => {
 
     dadosAtualizados.nome = props.item.nome;
     dadosAtualizados.tipo = props.item.tipo;
-    dadosAtualizados.valorUnitario = props.item.valorUnitario.toFixed(2);
+    dadosAtualizados.valorUnitario = props.item.valorUnitario ? props.item.valorUnitario.toFixed(2) : '0.00';
     dadosAtualizados.quantidade = props.item.quantidade;
 
     estaEditando.value = true;
@@ -200,6 +200,10 @@ const formatarValor = () => {
     margin: 1rem;
     padding-left: 0;
     padding-right: 0;
+}
+
+.card-Fixo {
+    max-height: 300px;
 }
 
 .form-control {

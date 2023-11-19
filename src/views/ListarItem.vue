@@ -24,7 +24,6 @@
 
 <script lang="ts" setup>
 import ShItemVue from '@/components/ShItem.vue';
-import { uid } from 'uid';
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import { authentication } from '@/stores/authentication';
@@ -42,7 +41,7 @@ onMounted(async() => {
     
    // Trazendo os items da API
 
-   const response = await fetch('http://localhost:8081/item/list',
+   const response = await fetch(`http://localhost:8081/stockhive/item/getItemByUser/${authentication().usuario}`,
         {
             method: 'GET',
             headers: {

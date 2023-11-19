@@ -14,7 +14,7 @@
         </div>
         
         <div class="container d-flex justify-content-center">
-            <form id="login-form" @submit="login">
+            <form id="login-form" @submit.prevent="login">
 
                 <div class="form-group">
                     <label for="usernameInput">Usuário</label>
