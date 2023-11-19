@@ -77,7 +77,7 @@ const cadastrarItem = async() => {
     );
 
     if(response.status == 200){
-        alert(`O Item #${response.text()} foi cadastrado com sucesso !`)
+        alert(`O Item foi cadastrado com sucesso !`)
 
         dadosCadastro.nome = '';
         dadosCadastro.tipo = null;
