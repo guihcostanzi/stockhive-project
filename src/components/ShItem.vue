@@ -143,7 +143,7 @@ const iniciarEdicaoItem = () => {
 
 const efetivarEdicao = () => {
 
-    emits("editar-item", dadosAtualizados.nome, dadosAtualizados.tipo, dadosAtualizados.valorUnitario, dadosAtualizados.quantidade, props.item.cod);
+    emits("editar-item", dadosAtualizados.nome, dadosAtualizados.tipo, dadosAtualizados.valorUnitario, dadosAtualizados.quantidade, props.item.codigo);
 
 }
 

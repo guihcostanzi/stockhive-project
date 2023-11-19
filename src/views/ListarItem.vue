@@ -91,11 +91,11 @@ const finalizarPesquisa = () => {
 const editarItem = async (nomeAtualizado: string, tipoAtualizado : string, valorAtualizado : string, quantidadeAtualizada : number, codItem : string) => {
 
     const data = {
+        codigo: codItem,
         nome: nomeAtualizado,
         quantidade: quantidadeAtualizada,
         tipo: tipoAtualizado,
-        valorUnitario: valorAtualizado,
-        cod: codItem
+        valorUnitario: valorAtualizado
     }
 
     const response = await fetch('http://localhost:8081/stockhive/item/update',
